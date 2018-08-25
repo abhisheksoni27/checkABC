@@ -1,7 +1,7 @@
 const canvas = document.getElementsByTagName('canvas')[0];
 
 let model;
-const MODEL_PATH = './model/model.json';
+const MODEL_PATH = 'https://codeprose.me/checkABC/model/model.json';
 /**
  * Loads the TF model
  * returns a Promise that resolves into a {model} instance
