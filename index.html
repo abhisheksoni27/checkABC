@@ -4,12 +4,18 @@
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.min.js"></script>
 
+    <link rel="stylesheet" href="style.css">
 
-    <script src="index.js"></script>
 </head>
 
 <body>
+    <canvas id="c"></canvas>
+    <img id="letterImage">
+    <button onclick="generate();">Generate Link</button>
+    <script src="drawing.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
