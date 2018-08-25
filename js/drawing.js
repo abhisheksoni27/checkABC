@@ -1,6 +1,11 @@
-const log = console.log;
+import {
+    MDCRipple
+} from '@material/ripple';
+
+new MDCRipple(document.querySelector('.button'));
 let WIDTH_MULTIPLIER = 0.8;
 let HEIGHT_MULTIPLIER = 0.6;
+
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 if (!isMobile) {
@@ -30,71 +35,76 @@ function getMousePos(canvas, evt) {
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
 
-(function () {
-    canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
-    canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
+canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
+canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
 
-    ctx.lineWidth = 20;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = 'black';
+ctx.lineWidth = 20;
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+ctx.strokeStyle = 'black';
 
-    // Clear
-    clearCanvas();
+export function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-    let mouse = {
-        x: NaN,
-        y: NaN
-    };
+let mouse = {
+    x: NaN,
+    y: NaN
+};
 
-    let last_mouse = {
-        x: NaN,
-        y: NaN
-    };
+let last_mouse = {
+    x: NaN,
+    y: NaN
+};
 
+const OnStartListener = function (e) {
+    if (isMobile) {
+        canvas.addEventListener('touchmove', onPaint, false)
+    } else {
+        canvas.addEventListener('mousemove', onPaint, false);
+    }
+};
 
-    const OnStartListener = function (e) {
-        if (isMobile) {
-            canvas.addEventListener('touchmove', onPaint, false)
-        } else {
-            canvas.addEventListener('mousemove', onPaint, false);
-        }
-    };
+const OnMoveListener = (e) => {
+    e.preventDefault();
+    last_mouse.x = mouse.x;
+    last_mouse.y = mouse.y;
+    mouse = getMousePos(canvas, e);
+    return false;
+};
 
-    const OnMoveListener = (e) => {
-        e.preventDefault();
-        last_mouse.x = mouse.x;
-        last_mouse.y = mouse.y;
-        mouse = getMousePos(canvas, e);
-        return false;
-    };
+const OnEndListener = function () {
+    if (isMobile) {
+        canvas.removeEventListener('touchmove', onPaint, false)
+        // Reset!
+        mouse = {
+            x: NaN,
+            y: NaN
+        };
 
-    const OnEndListener = function () {
-        if (isMobile) {
-            canvas.removeEventListener('touchmove', onPaint, false)
-            // Reset!
-            mouse = {
-                x: NaN,
-                y: NaN
-            };
+        last_mouse = {
+            x: NaN,
+            y: NaN
+        };
+    } else {
+        canvas.removeEventListener('mousemove', onPaint, false);
+    }
 
-            last_mouse = {
-                x: NaN,
-                y: NaN
-            };
-        } else {
-            canvas.removeEventListener('mousemove', onPaint, false);
-        }
+};
 
-    };
+const onPaint = function () {
+    ctx.beginPath();
+    ctx.moveTo(last_mouse.x, last_mouse.y);
+    ctx.lineTo(mouse.x, mouse.y);
+    ctx.closePath();
+    ctx.stroke();
+};
 
-    const onPaint = function () {
-        ctx.beginPath();
-        ctx.moveTo(last_mouse.x, last_mouse.y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.closePath();
-        ctx.stroke();
-    };
+// Clear
+
+clearCanvas();
+
+export function draw() {
 
     if (isMobile) {
         canvas.addEventListener('touchstart', OnStartListener, false)
@@ -106,9 +116,4 @@ const ctx = canvas.getContext('2d');
         canvas.addEventListener('mousemove', OnMoveListener, false);
         canvas.addEventListener('mouseup', OnEndListener, false);
     }
-
-}());
-
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

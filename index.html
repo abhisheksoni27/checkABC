@@ -1,17 +1,15 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="rgb(26, 24, 30)" />
+    
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
     </script>
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bundle.css">
+    <link rel="stylesheet" href="bundle.css">
 
-    <meta name="theme-color" content="rgb(26, 24, 30)" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,400,700" rel="stylesheet">
 
 </head>
@@ -28,18 +26,16 @@
         <canvas id="c"></canvas>
 
         <div class="buttons-container">
-            <button class="checkButton button mdc-button mdc-button--raised" onclick="checkImage();">Check</button>
+            <button class="checkButton button mdc-button mdc-button--raised">Check</button>
 
-            <button class="clearButton button mdc-button mdc-button--raised" onclick="clearCanvas();">Clear</button>
+            <button class="clearButton button mdc-button mdc-button--raised">Clear</button>
         </div>
 
     </div>
 
     <link rel="stylesheet" href="css/style.css">
     <!-- Scripts -->
-    <script src="js/drawing.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/model.js"></script>
+    <script src="bundle.js" async></script>
 </body>
 
 </html>

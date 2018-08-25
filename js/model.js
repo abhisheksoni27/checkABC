@@ -1,5 +1,7 @@
-let model;
+const canvas = document.getElementsByTagName('canvas')[0];
+const ctx = canvas.getContext('2d');
 
+let model;
 /**
  * Loads the TF model
  * returns a Promise that resolves into a {model} instance
@@ -7,6 +9,7 @@ let model;
 function loadModel() {
     return tf.loadModel('model/model.json');
 }
+
 
 // Immediately load the model!
 loadModel().then((res) => {
@@ -17,6 +20,7 @@ loadModel().then((res) => {
 // we trained our model on
 const finalWidth = 28;
 const finalHeight = 28;
+
 
 // Result will be displayed here
 const result = document.querySelector('.result');
@@ -48,34 +52,6 @@ function resize(dstWidth, dstHeight) {
     resizeCtx.drawImage(canvas, 0, 0, dstWidth, dstHeight);
 }
 
-let dataSrc;
-/**
- * Function called when Check is pressed.
- */
-function checkImage() {
-    resize(finalWidth, finalHeight);
-
-    // Get raw pixel data
-    dataSrc = resizeCtx.getImageData(0, 0, finalWidth, finalHeight).data;
-
-    const len = dataSrc.length;
-    let luma;
-
-    let j = 0,
-        k = 0;
-
-    // convert by iterating over each pixel each representing RGBA
-    for (let i = 0; i < len; i += 4) {
-        // Need to check why this works, but for now it does, so yeah!
-        luma = dataSrc[i + 3]
-        pixels[i / 4] = (luma) / 255;
-
-    }
-
-    // At the end, infer!
-    infer();
-}
-
 function infer() {
     loadModel().then((res) => {
         model = res;
@@ -89,4 +65,29 @@ function infer() {
             result.innerHTML = `You drew ${answer}.`
         });
     });
+}
+
+/**
+ * Function called when Check is pressed.
+ */
+
+export default function check() {
+    resize(finalWidth, finalHeight);
+
+    // Get raw pixel data
+    const dataSrc = resizeCtx.getImageData(0, 0, finalWidth, finalHeight).data;
+
+    const len = dataSrc.length;
+    let luma;
+
+    // convert by iterating over each pixel each representing RGBA
+    for (let i = 0; i < len; i += 4) {
+        // Need to check why this works, but for now it does, so yeah!
+        luma = dataSrc[i + 3]
+        pixels[i / 4] = (luma) / 255;
+
+    }
+
+    // At the end, infer!
+    infer();
 }

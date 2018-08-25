@@ -1,4 +1,7 @@
 @import "@material/button/mdc-button";
+@import "./reset";
+@import "./style";
+
 .button {
     @include mdc-button-container-fill-color(#FFCF44);
     @include mdc-button-ink-color(black);
