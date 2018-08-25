@@ -8,11 +8,19 @@ function OnMouseMoveListener(e) {
 
 
 
+let WIDTH_MULTIPLIER = 0.8;
+let HEIGHT_MULTIPLIER = 0.6;
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (!isMobile) {
+    // not for mobile
+    WIDTH_MULTIPLIER = 0.5;
+    HEIGHT_MULTIPLIER = 0.6;
+}
 (function () {
     const canvas = document.getElementsByTagName('canvas')[0];
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth * 0.8;
-    canvas.height = window.innerHeight * 0.6;
+    canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
+    canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     let mouse = {
