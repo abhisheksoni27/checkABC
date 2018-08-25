@@ -2,21 +2,30 @@
 
 <head>
     <!-- Load TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
+    </script> -->
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+
+    <link rel="stylesheet" href="bundle.css">
+
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,400,700" rel="stylesheet">
 
 </head>
 
 <body>
-    <canvas id="c"></canvas>
-    
-    <img id="letterImage">
-    
-    <button onclick="checkImage();">Generate Link</button>
-    
+    <div class="container">
+
+        <canvas id="c"></canvas>
+
+        <img id="letterImage">
+
+        <button class="checkButton  mdc-button mdc-button--raised" onclick="checkImage();">Check</button>
+
+    </div>
+
+    <link rel="stylesheet" href="style.css">
     <!-- Scripts -->
     <script src="drawing.js"></script>
     <script src="index.js"></script>

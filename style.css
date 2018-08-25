@@ -1,13 +1,24 @@
-body {
+body{
+    height: 100vh;
+}
+
+.container {
+    height: 90%;
+    padding:2em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Courier';
 }
 
-canvas{
-    border: 1px solid black;
+canvas {
+    border: 1px solid #ccc;
 }
 
-#letterImage{
-    border: 1px solid hotpink;
+.checkButton{
+    font-size: 2em;
+    width: 80%;
+    height:10%;
+    margin-top: 2em;
 }

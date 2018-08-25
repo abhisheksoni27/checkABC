@@ -1,8 +1,8 @@
 (function () {
     const canvas = document.getElementsByTagName('canvas')[0];
     const ctx = canvas.getContext('2d');
-    canvas.width = 280;
-    canvas.height = 280;
+    canvas.width = window.innerWidth * 0.8;
+    canvas.height = window.innerHeight * 0.8;
     let mouse = {
         x: 0,
         y: 0
