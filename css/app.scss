@@ -1,6 +1,5 @@
-@import "@material/button/mdc-button";
 @import "./reset";
-@import "./style";
+@import "@material/button/mdc-button";
 
 .button {
     @include mdc-button-container-fill-color(#FFCF44);
@@ -8,3 +7,5 @@
     @include mdc-states(black);
     margin: 0em 1em;
 }
+
+@import "./style";
