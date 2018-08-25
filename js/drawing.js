@@ -34,6 +34,7 @@ function getMousePos(canvas, evt) {
 
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
+const result = document.querySelector('.result');
 
 canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
 canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
@@ -45,6 +46,7 @@ ctx.strokeStyle = 'black';
 
 export function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    result.innerHTML = `Go on! Draw Something.`
 }
 
 let mouse = {

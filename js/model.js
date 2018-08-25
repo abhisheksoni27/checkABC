@@ -1,5 +1,4 @@
 const canvas = document.getElementsByTagName('canvas')[0];
-const ctx = canvas.getContext('2d');
 
 let model;
 /**
@@ -37,9 +36,9 @@ resizeCanvas.height = finalHeight;
 // that contains the raw Pixel Data
 
 // Shape? 28x28
-const pixels = new Array(784);
+const pixels = new Array(finalWidth * finalHeight);
 
-for (let i = 0; i < 784; i++) {
+for (let i = 0; i < finalWidth * finalHeight; i++) {
     pixels[i] = 0;
 }
 
