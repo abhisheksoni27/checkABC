@@ -1,8 +1,20 @@
+function OnMouseMoveListener(e) {
+    last_mouse.x = mouse.x;
+    last_mouse.y = mouse.y;
+
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
+}
+
+
+
 (function () {
     const canvas = document.getElementsByTagName('canvas')[0];
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth * 0.8;
     canvas.height = window.innerHeight * 0.6;
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     let mouse = {
         x: 0,
         y: 0
@@ -13,12 +25,13 @@
     };
 
     /* Mouse Capturing Work */
-    canvas.addEventListener('mousemove', function (e) {
+    canvas.addEventListener('mousemove', (e) => {
         last_mouse.x = mouse.x;
         last_mouse.y = mouse.y;
 
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
+
     }, false);
 
 
