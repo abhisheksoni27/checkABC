@@ -2,23 +2,34 @@ body{
     height: 100vh;
 }
 
+/* body > *{ */
+    /* border: 1px solid rgb(195, 0, 255); */
+/* } */
+
 .container {
-    height: 90%;
-    padding:2em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    font-family: 'Courier';
+    font-family: 'Raleway';
 }
 
 canvas {
+    padding: 0;
+    margin:0;
     border: 1px solid #ccc;
 }
 
 .checkButton{
-    font-size: 2em;
+    font-size: 3em;
     width: 80%;
     height:10%;
     margin-top: 2em;
+}
+
+h3{
+    font-family: 'Raleway';
+    align-items: flex-start;
+    font-size: 5em;
+    padding: 1em;
+    text-align: center;
 }
