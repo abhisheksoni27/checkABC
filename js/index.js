@@ -1,10 +1,21 @@
 import check from './model'
-import {draw, clearCanvas} from './drawing'
+import {
+    draw,
+    clearCanvas
+} from './drawing'
 
 draw();
 
 document.querySelector('.checkButton').onclick = check
 document.querySelector('.clearButton').onclick = clearCanvas
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('./service-worker.js')
+        .then(function () {
+            console.log("Service Worker Registered");
+        });
+}
 
 // new MDCRipple(document.querySelector('.button'));
 
