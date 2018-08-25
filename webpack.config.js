@@ -1,10 +1,13 @@
 const autoprefixer = require('autoprefixer');
-
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 module.exports = {
     entry: ['./css/app.scss', './js/index.js'],
     output: {
         filename: 'bundle.js',
     },
+    plugins: [
+        new MinifyPlugin()
+    ],
     module: {
         rules: [{
                 test: /\.scss$/,
