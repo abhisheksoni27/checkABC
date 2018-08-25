@@ -28,14 +28,25 @@ canvas {
 h3 {
     font-family: 'Raleway';
     font-size: 2em;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
 }
 
-.buttons-container{
+.buttons-container {
     width: 50%;
     display: flex;
     justify-content: center;
+}
+
+.result-container {
+    width: 50%;
+    text-align: center;
+    padding:1em;
+    border-top: 1px solid #FFCF44;
+}
+
+.result-container>p {
+    font-size: 2em;
 }
 
 /* At the top level of your code */
@@ -44,25 +55,25 @@ h3 {
     body {
         height: 90vh;
     }
-
-    .buttons-container{
+    .buttons-container {
         width: 80%;
         display: flex;
     }
-
+    .result-container {
+        width: 80%;
+        padding:1em;
+        border-top: 1px solid #FFCF44;
+    }
+    .result-container>p {
+        font-size: 1.1em;
+    }
     .button {
         font-size: 1em;
         height: 10%;
         margin-top: 2em;
-        background: #FFCF44;
-        color: #FFCF44;
     }
-
     h3 {
-        font-family: 'Raleway';
-        align-items: flex-start;
         font-size: 2em;
-        padding: 1em;
-        text-align: center;
+        padding: 0.5em;
     }
 }

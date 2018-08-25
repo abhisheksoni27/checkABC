@@ -18,6 +18,9 @@ loadModel().then((res) => {
 const finalWidth = 28;
 const finalHeight = 28;
 
+// Result will be displayed here
+const result = document.querySelector('.result');
+
 // Another canvas used to resize the original one!
 // Notice how this is created on the fly, not referenced
 const resizeCanvas = document.createElement("canvas"),
@@ -43,7 +46,6 @@ function resize(dstWidth, dstHeight) {
     // First clear the canvas, just in case
     resizeCtx.clearRect(0, 0, resizeCanvas.width, resizeCanvas.height)
     resizeCtx.drawImage(canvas, 0, 0, dstWidth, dstHeight);
-    letterImage.src = resizeCanvas.toDataURL()
 }
 
 let dataSrc;
@@ -83,8 +85,8 @@ function infer() {
 
             const axis = 1;
             const predictions = Array.from(output.argMax(axis).dataSync());
-
-            log(String.fromCharCode(64 + predictions[0]));
+            const answer = String.fromCharCode(64 + predictions[0]);
+            result.innerHTML = `You drew ${answer}.`
         });
     });
 }

@@ -34,7 +34,7 @@ const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
     canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
 
-    ctx.lineWidth = isMobile ? 10 : 20;
+    ctx.lineWidth = 20;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
@@ -62,6 +62,7 @@ const ctx = canvas.getContext('2d');
     };
 
     const OnMoveListener = (e) => {
+        e.preventDefault();
         last_mouse.x = mouse.x;
         last_mouse.y = mouse.y;
         mouse = getMousePos(canvas, e);
