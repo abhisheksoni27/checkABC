@@ -1,6 +1,7 @@
 @import "@material/button/mdc-button";
-.checkButton {
+.button {
     @include mdc-button-container-fill-color(#FFCF44);
     @include mdc-button-ink-color(black);
     @include mdc-states(black);
+    margin: 0em 1em;
 }

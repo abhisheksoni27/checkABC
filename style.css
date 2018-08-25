@@ -15,7 +15,7 @@ canvas {
     border: 10px solid #FFCF44
 }
 
-.checkButton {
+.button {
     font-size: 1em;
     width: 40%;
     height: 10%;
@@ -31,6 +31,12 @@ h3 {
     text-align: center;
 }
 
+.buttons-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
 /* At the top level of your code */
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
@@ -38,9 +44,13 @@ h3 {
         height: 90vh;
     }
 
-    .checkButton {
-        font-size: 1em;
+    .buttons-container{
         width: 80%;
+        display: flex;
+    }
+
+    .button {
+        font-size: 1em;
         height: 10%;
         margin-top: 2em;
         background: #FFCF44;

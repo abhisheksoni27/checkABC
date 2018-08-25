@@ -27,9 +27,10 @@ function getMousePos(canvas, evt) {
     return mousePos;
 }
 
+const canvas = document.getElementsByTagName('canvas')[0];
+const ctx = canvas.getContext('2d');
+
 (function () {
-    const canvas = document.getElementsByTagName('canvas')[0];
-    const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
     canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
 
@@ -39,7 +40,7 @@ function getMousePos(canvas, evt) {
     ctx.strokeStyle = 'black';
 
     // Clear
-    clearCanvas(ctx, canvas);
+    clearCanvas();
 
     let mouse = {
         x: NaN,
@@ -110,7 +111,7 @@ function getMousePos(canvas, evt) {
 
 }());
 
-function clearCanvas(ctx, canvas) {
+function clearCanvas() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }

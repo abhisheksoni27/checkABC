@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="bundle.css">
 
-    <meta name="theme-color" content="rgb(26, 24, 30)"/>
+    <meta name="theme-color" content="rgb(26, 24, 30)" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -26,14 +26,18 @@
 
         <img id="letterImage">
 
-        <button class="checkButton  mdc-button mdc-button--raised" onclick="checkImage();">Check</button>
+        <div class="buttons-container">
+            <button class="checkButton button mdc-button mdc-button--raised" onclick="checkImage();">Check</button>
+
+            <button class="clearButton button mdc-button mdc-button--raised" onclick="clearCanvas();">Clear</button>
+        </div>
 
     </div>
 
     <link rel="stylesheet" href="style.css">
     <!-- Scripts -->
     <script src="drawing.js"></script>
-    <!-- <script src="index.js"></script> -->
+    <script src="index.js"></script>
     <!-- <script src="model.js"></script> -->
 </body>
 
