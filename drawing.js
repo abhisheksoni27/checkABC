@@ -1,61 +1,93 @@
-function OnMouseMoveListener(e) {
-    last_mouse.x = mouse.x;
-    last_mouse.y = mouse.y;
-
-    mouse.x = e.pageX - this.offsetLeft;
-    mouse.y = e.pageY - this.offsetTop;
-}
-
-
-
+const log = console.log;
 let WIDTH_MULTIPLIER = 0.8;
 let HEIGHT_MULTIPLIER = 0.6;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 if (!isMobile) {
     // not for mobile
     WIDTH_MULTIPLIER = 0.5;
     HEIGHT_MULTIPLIER = 0.6;
 }
+
+function getMousePos(canvas, evt) {
+    const rect = canvas.getBoundingClientRect();
+    let mousePos;
+
+    if (isMobile) {
+        mousePos = {
+            x: evt.touches[0].clientX - rect.left,
+            y: evt.touches[0].clientY - rect.top
+        }
+    } else {
+        mousePos = {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        }
+    }
+    return mousePos;
+}
+
 (function () {
     const canvas = document.getElementsByTagName('canvas')[0];
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth * WIDTH_MULTIPLIER;
     canvas.height = window.innerHeight * HEIGHT_MULTIPLIER;
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    let mouse = {
-        x: 0,
-        y: 0
-    };
-    let last_mouse = {
-        x: 0,
-        y: 0
-    };
 
-    /* Mouse Capturing Work */
-    canvas.addEventListener('mousemove', (e) => {
-        last_mouse.x = mouse.x;
-        last_mouse.y = mouse.y;
-
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-
-    }, false);
-
-
-    /* Drawing on Paint App */
-    ctx.lineWidth = 20;
+    ctx.lineWidth = isMobile ? 10 : 20;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
 
-    canvas.addEventListener('mousedown', function (e) {
-        canvas.addEventListener('mousemove', onPaint, false);
-    }, false);
+    // Clear
+    clearCanvas(ctx, canvas);
 
-    canvas.addEventListener('mouseup', function () {
-        canvas.removeEventListener('mousemove', onPaint, false);
-    }, false);
+    let mouse = {
+        x: NaN,
+        y: NaN
+    };
+
+    let last_mouse = {
+        x: NaN,
+        y: NaN
+    };
+
+
+    const OnStartListener = function (e) {
+        log("OnStart")
+        if (isMobile) {
+            canvas.addEventListener('touchmove', onPaint, false)
+        } else {
+            canvas.addEventListener('mousemove', onPaint, false);
+        }
+    };
+
+    const OnMoveListener = (e) => {
+        log("OnMove")
+        last_mouse.x = mouse.x;
+        last_mouse.y = mouse.y;
+        mouse = getMousePos(canvas, e);
+        return false;
+    };
+
+    const OnEndListener = function () {
+        log("OnEnd")
+        if (isMobile) {
+            canvas.removeEventListener('touchmove', onPaint, false)
+            // Reset!
+            mouse = {
+                x: NaN,
+                y: NaN
+            };
+
+            last_mouse = {
+                x: NaN,
+                y: NaN
+            };
+        } else {
+            canvas.removeEventListener('mousemove', onPaint, false);
+        }
+
+    };
 
     const onPaint = function () {
         ctx.beginPath();
@@ -65,4 +97,20 @@ if (!isMobile) {
         ctx.stroke();
     };
 
+    if (isMobile) {
+        canvas.addEventListener('touchstart', OnStartListener, false)
+        canvas.addEventListener('touchmove', OnMoveListener, false)
+        canvas.addEventListener('touchend', OnEndListener, false)
+    } else {
+        /* Mouse Capturing Work */
+        canvas.addEventListener('mousedown', OnStartListener, false);
+        canvas.addEventListener('mousemove', OnMoveListener, false);
+        canvas.addEventListener('mouseup', OnEndListener, false);
+    }
+
 }());
+
+function clearCanvas(ctx, canvas) {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}

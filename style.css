@@ -1,7 +1,7 @@
-body{
+body {
     height: 100vh;
     background: #27272F;
-    color:#FFCF44;
+    color: #FFCF44;
 }
 
 .container {
@@ -15,40 +15,41 @@ canvas {
     border: 10px solid #FFCF44
 }
 
-.checkButton{
-    font-size: 3em;
-    width: 80%;
-    height:10%;
+.checkButton {
+    font-size: 1em;
+    width: 40%;
+    height: 10%;
     margin-top: 2em;
     background: #FFCF44;
-    color:#FFCF44;
+    color: #FFCF44;
 }
 
-h3{
+h3 {
     font-family: 'Raleway';
-    align-items: flex-start;
-    font-size: 5em;
+    font-size: 2em;
     padding: 1em;
     text-align: center;
 }
 
-@media (min-width: 500px){
+/* At the top level of your code */
 
-    canvas {
-        border: 10px solid #FFCF44
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    body {
+        height: 90vh;
     }
 
-    .checkButton{
+    .checkButton {
         font-size: 1em;
-        width: 40%;
-        height:10%;
+        width: 80%;
+        height: 10%;
         margin-top: 2em;
         background: #FFCF44;
-        color:#FFCF44;
+        color: #FFCF44;
     }
-    
-    h3{
+
+    h3 {
         font-family: 'Raleway';
+        align-items: flex-start;
         font-size: 2em;
         padding: 1em;
         text-align: center;
