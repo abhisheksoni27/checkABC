@@ -4,10 +4,6 @@ body{
     color:#FFCF44;
 }
 
-/* body > *{ */
-    /* border: 1px solid rgb(195, 0, 255); */
-/* } */
-
 .container {
     display: flex;
     flex-direction: column;
@@ -16,8 +12,6 @@ body{
 }
 
 canvas {
-    padding: 0;
-    margin:0;
     border: 10px solid #FFCF44
 }
 
@@ -36,4 +30,27 @@ h3{
     font-size: 5em;
     padding: 1em;
     text-align: center;
+}
+
+@media (min-width: 500px){
+
+    canvas {
+        border: 10px solid #FFCF44
+    }
+
+    .checkButton{
+        font-size: 1em;
+        width: 40%;
+        height:10%;
+        margin-top: 2em;
+        background: #FFCF44;
+        color:#FFCF44;
+    }
+    
+    h3{
+        font-family: 'Raleway';
+        font-size: 2em;
+        padding: 1em;
+        text-align: center;
+    }
 }
