@@ -7,7 +7,7 @@ let model;
  * returns a Promise that resolves into a {model} instance
  */
 function loadModel() {
-    return tf.loadModel('model/model.json');
+    return tf.loadModel('../model/model.json');
 }
 
 
