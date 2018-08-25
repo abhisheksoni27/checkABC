@@ -12,7 +12,8 @@ body {
 }
 
 canvas {
-    border: 10px solid #FFCF44
+    border: 10px solid #FFCF44;
+    background: white;
 }
 
 .button {

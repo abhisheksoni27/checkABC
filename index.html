@@ -2,8 +2,8 @@
 
 <head>
     <!-- Load TensorFlow.js -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
-    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs">
+    </script>
 
     <link rel="stylesheet" href="reset.css">
 
@@ -24,7 +24,7 @@
 
         <canvas id="c"></canvas>
 
-        <img id="letterImage">
+        <img id="letterImage" style="display:none">
 
         <div class="buttons-container">
             <button class="checkButton button mdc-button mdc-button--raised" onclick="checkImage();">Check</button>
@@ -38,7 +38,7 @@
     <!-- Scripts -->
     <script src="drawing.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="model.js"></script> -->
+    <script src="model.js"></script>
 </body>
 
 </html>

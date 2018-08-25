@@ -54,7 +54,6 @@ const ctx = canvas.getContext('2d');
 
 
     const OnStartListener = function (e) {
-        log("OnStart")
         if (isMobile) {
             canvas.addEventListener('touchmove', onPaint, false)
         } else {
@@ -63,7 +62,6 @@ const ctx = canvas.getContext('2d');
     };
 
     const OnMoveListener = (e) => {
-        log("OnMove")
         last_mouse.x = mouse.x;
         last_mouse.y = mouse.y;
         mouse = getMousePos(canvas, e);
@@ -71,7 +69,6 @@ const ctx = canvas.getContext('2d');
     };
 
     const OnEndListener = function () {
-        log("OnEnd")
         if (isMobile) {
             canvas.removeEventListener('touchmove', onPaint, false)
             // Reset!
@@ -112,6 +109,5 @@ const ctx = canvas.getContext('2d');
 }());
 
 function clearCanvas() {
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

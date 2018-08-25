@@ -1,5 +1,4 @@
 let model;
-const log = console.log;
 
 /**
  * Loads the TF model
@@ -13,12 +12,6 @@ function loadModel() {
 loadModel().then((res) => {
     model = res;
 });
-
-// Original Canvas used for fingerpainting
-const canvas = document.getElementsByTagName('canvas')[0];
-
-// After all, every canvas needs a context!
-const ctx = canvas.getContext('2d');
 
 // Because that's the size of the images
 // we trained our model on
@@ -37,9 +30,11 @@ resizeCanvas.height = finalHeight;
 // that contains the raw Pixel Data
 
 // Shape? 28x28
-const pixels = new Array(finalHeight)
-    .fill(new Array(finalWidth).fill(0))
+const pixels = new Array(784);
 
+for (let i = 0; i < 784; i++) {
+    pixels[i] = 0;
+}
 
 /**
  * Resizes an image to the desired size using a resize Canvas
@@ -51,6 +46,7 @@ function resize(dstWidth, dstHeight) {
     letterImage.src = resizeCanvas.toDataURL()
 }
 
+let dataSrc;
 /**
  * Function called when Check is pressed.
  */
@@ -58,7 +54,7 @@ function checkImage() {
     resize(finalWidth, finalHeight);
 
     // Get raw pixel data
-    const dataSrc = resizeCtx.getImageData(0, 0, finalWidth, finalHeight).data;
+    dataSrc = resizeCtx.getImageData(0, 0, finalWidth, finalHeight).data;
 
     const len = dataSrc.length;
     let luma;
@@ -69,33 +65,26 @@ function checkImage() {
     // convert by iterating over each pixel each representing RGBA
     for (let i = 0; i < len; i += 4) {
         // Need to check why this works, but for now it does, so yeah!
-        luma = dataSrc[i + 3];
-        pixels[j][k] = (luma) / 255;
-        k++;
+        luma = dataSrc[i + 3]
+        pixels[i / 4] = (luma) / 255;
 
-        // Think C like Array representations and pointer arithematic?
-        // Iterate upto 28 elements, then change rows
-        if (k > 27) {
-            k = 0;
-            j++;
-        }
     }
 
     // At the end, infer!
     infer();
 }
 
-// function infer() {
-//     loadModel().then((res) => {
-//         model = res;
-//         tf.tidy(() => {
-//             const imageTensor = tf.tensor(pixels).reshape([-1, 28, 28, 1]);
-//             const output = model.predict(imageTensor);
+function infer() {
+    loadModel().then((res) => {
+        model = res;
+        tf.tidy(() => {
+            const imageTensor = tf.tensor(pixels).reshape([-1, 28, 28, 1]);
+            const output = model.predict(imageTensor);
 
-//             const axis = 1;
-//             const predictions = Array.from(output.argMax(axis).dataSync());
+            const axis = 1;
+            const predictions = Array.from(output.argMax(axis).dataSync());
 
-//             log(String.fromCharCode(64 + predictions[0]));
-//         });
-//     });
-// }
+            log(String.fromCharCode(64 + predictions[0]));
+        });
+    });
+}
