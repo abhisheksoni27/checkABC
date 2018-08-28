@@ -2,7 +2,7 @@
 
 A tensorflow.js app for recognizing handwritten English letters
 
-![Demo GIF](../images/checkABC.gif)
+![Demo GIF](../images/checkABC-demo.gif)
 
 # Code
 The repository contains the pre-trained model in the model directory. The original .h5 model has been converted to this format by tensorflowjs_converter to allow tf.js to consume it.
