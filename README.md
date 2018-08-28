@@ -2,7 +2,7 @@
 
 A tensorflow.js app for recognizing handwritten English letters
 
-![Demo GIF](https://github.com/abhisheksoni27/checkABC/raw/master/images/checkABC-demo.gif | width=200)
+<img src="https://github.com/abhisheksoni27/checkABC/raw/master/images/checkABC-demo.gif" alt="Demo GIF" width="200px">
 
 # Code
 The repository contains the pre-trained model in the model directory. The original .h5 model has been converted to this format by tensorflowjs_converter to allow tf.js to consume it.
