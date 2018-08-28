@@ -12,16 +12,11 @@ The original network has the following configuration:
 ```python
 
 model = Sequential()
-model.add(Conv2D(32,
-                        (3, 3),
-                        padding='valid',
-                        input_shape=input_shape,
-                        activation='relu'))
-model.add(Conv2D(64,
-                        (3, 3),
-                        activation='relu'))
+model.add(Conv2D(32, (3, 3), padding='valid', input_shape=input_shape,
+          activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
 
-model.add(MaxPooling2D((2,2)))
+model.add(MaxPooling2D((2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
 
